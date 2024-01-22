@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <BeepboopButton showing={showing} onClick={handleClick} />
-      {showing ? <h1>go to hell</h1> : null}
+      {showing ? <h1>it truly does not get more simple than this</h1> : null}
     </div>
   );
 }
