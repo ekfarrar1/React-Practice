@@ -1,9 +1,13 @@
 .stopwatch {
-    height: 85vh;
-    width: 23vw;
-    background-color: #0d0c1b;
+    height: 500px;
+    width: 500px;
+    background-color: #f08833;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    border-radius: 100%;
+    border-style: double;
 }
+
+

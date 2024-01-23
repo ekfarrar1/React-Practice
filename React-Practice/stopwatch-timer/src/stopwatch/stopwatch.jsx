@@ -7,7 +7,6 @@ import ControlButtons from '../control-buttons/control-buttons'
 function Stopwatch() {
     const[isPaused, setPaused] = useState(true);
     const[time, setTime] = useState(0); 
-
     
     useEffect(() => {
         let interval = null

@@ -10,7 +10,7 @@ function ControlButtons(props){
         StartStopButton = (
             <div className="btn btn-one btn-start"
                 onClick={props.handleClick}>
-                let's go motherfucker
+                let's get it
             </div>
         );
     } else {
