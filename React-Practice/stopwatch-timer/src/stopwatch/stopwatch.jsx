@@ -8,6 +8,7 @@ function Stopwatch() {
     const[isPaused, setPaused] = useState(true);
     const[time, setTime] = useState(0); 
 
+    
     useEffect(() => {
         let interval = null
         if (isPaused === false){
@@ -22,15 +23,22 @@ function Stopwatch() {
         return () => clearInterval(interval);
     }, [isPaused]);
 
-    const handleStart = () => {
-        setPaused(false);
+    const handleReset = () => {
+        setTime(0);
     };
+
+    const handleClick = () => {
+        setPaused((isPaused) => !isPaused);
+    };
+
 
     return (<div className="stopwatch">
         <Timer time={time}/>
         <ControlButtons 
             isPaused={isPaused}
-            handleStart={handleStart}/>
+            handleReset={handleReset}
+            handleClick={handleClick}
+        />
     </div>);
 }
 
