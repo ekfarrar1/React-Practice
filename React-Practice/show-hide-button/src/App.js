@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from "react";
 
 function App() {
-  const [showing, setShow] = useState(1);
+  const [showing, setShow] = useState(0);
 
   function handleClick() {
     setShow((showing) => !showing);
