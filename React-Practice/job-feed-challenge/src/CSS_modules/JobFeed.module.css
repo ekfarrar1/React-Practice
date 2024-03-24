@@ -1,0 +1,44 @@
+.container {
+  padding: 0.4rem;
+}
+
+.header {
+  text-align: center;
+}
+
+.allPostsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post {
+  text-align: left;
+  background-color: azure;
+}
+
+.postId {
+  text-align: center;
+  font-weight: bold;
+}
+
+.button {
+  border: 1px solid #64748b;
+  background: #475569;
+  padding: 1rem 4rem;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+.postContainer {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+  width: 20rem;
+  margin-right: 10px;
+  transition: all 0.1s ease-in-out;
+}
