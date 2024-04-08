@@ -10,8 +10,9 @@ import moment from 'moment';
 function JobFeed() {
   const [jobPosts, setJobPosts] = useState([]);
   const [pageNumber, setPageNumber] = useState(0)
+  const [perPage] = useState(5)
+  const [totalPages, setTotalPages] = useState(0)
   const [endReached, setEndReached] = useState(false);
-
 
 
   //asynchronous function: used to handle functions that may take some time (common for API calls)
@@ -20,6 +21,9 @@ function JobFeed() {
     if (!endReached){
       try{
         const response = await axios.get(`https://hacker-news.firebaseio.com/v0/jobstories.json`)
+        // const totalPages = Math.ceil(response.data.length / perPage);
+        // setTotalPages(totalPages);
+
         //can't use a setter function for job IDs because it's inside an async function
           //state functions are updated in batches in React JS, so if you try to set job IDs 
           //with a setter function and access right after it likely won't be updated to current state yet
@@ -27,8 +31,8 @@ function JobFeed() {
         // grab 5 job IDs based on page number
           //.splice overwrites original array
           //so, response.data returns all job IDs every time and splice takes the next 5 needed until reach the end
-        //const jobPostIds = response.data.splice(pageNumber*5, 5)
         const jobPostIds = response.data.splice(pageNumber*5, 5)
+
         
         // jobPosts.length is growing by 5 with each API call, so you know you've reached the end once the length of job posts 
           // is >= length of the response with every job post in it
@@ -90,7 +94,7 @@ function JobFeed() {
         {
           // only display "Load More" button if end hasn't been reached
           !endReached && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               // increment pageNumber by one with each button click
               onClick={() => setPageNumber(pageNumber + 1)}
@@ -116,7 +120,7 @@ const Post = ({ post }) => {
       {/* <div> defines divison. block-level element used as container for HTML elements--> */}
       <div className={styles.postContainer}>
         <p>
-          {/* <span> is an inline containerused to mark up text */}
+          {/* <span> is an inline container used to mark up text */}
           ID: <span>{post?.id}</span>{' '}
         </p>
         <h1>{post?.title}</h1>
@@ -126,6 +130,33 @@ const Post = ({ post }) => {
         </p>
       </div>
     </a>
+  );
+};
+
+// Pagination component
+
+const Pagination = ({ totalPages, currentPage, onPageChange }) => {
+  const pages = [];
+  // Add index for each page number to pages array
+  for (let i = 0; i < totalPages; i++) {
+    pages.push(i);
+  }
+
+  return (
+    <div className={styles.pagination}>
+      {pages.map((page) => (
+        // generate button for each page
+        // set class style conditionally (active vs non-active page numbers have different style)
+        // change page on button click
+        <button
+          key={page}
+          className={currentPage === page ? styles.activePage : styles.page}
+          onClick={() => onPageChange(page)}
+        >
+          {page + 1}
+        </button>
+      ))}
+    </div>
   );
 };
 

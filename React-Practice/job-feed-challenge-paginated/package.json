@@ -1,5 +1,5 @@
 {
-  "name": "job-feed-challenge",
+  "name": "job-feed-challenge-paginated",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

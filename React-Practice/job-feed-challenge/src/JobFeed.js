@@ -10,6 +10,8 @@ import moment from 'moment';
 function JobFeed() {
   const [jobPosts, setJobPosts] = useState([]);
   const [pageNumber, setPageNumber] = useState(0)
+  const [perPage] = useState(5)
+  const [totalPages, setTotalPages] = useState(0)
   const [endReached, setEndReached] = useState(false);
 
 
@@ -20,6 +22,7 @@ function JobFeed() {
     if (!endReached){
       try{
         const response = await axios.get(`https://hacker-news.firebaseio.com/v0/jobstories.json`)
+
         //can't use a setter function for job IDs because it's inside an async function
           //state functions are updated in batches in React JS, so if you try to set job IDs 
           //with a setter function and access right after it likely won't be updated to current state yet
@@ -59,7 +62,7 @@ function JobFeed() {
         axios.get(`https://hacker-news.firebaseio.com/v0/item/${jobPostId}.json`)
         // if successful, set job IDs as response data
         .then(response =>{
-          console.log(response)
+          //console.log(response)
           // Can use setter function because this isn't an async function
           // '...' = "Spread Syntax"
           // response.data contains metadata for job post
@@ -90,7 +93,7 @@ function JobFeed() {
         {
           // only display "Load More" button if end hasn't been reached
           !endReached && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               // increment pageNumber by one with each button click
               onClick={() => setPageNumber(pageNumber + 1)}
@@ -126,6 +129,32 @@ const Post = ({ post }) => {
         </p>
       </div>
     </a>
+  );
+};
+
+
+
+
+
+// not implemented 
+const Pagination = ({ totalPages, currentPage, onPageChange }) => {
+  const pages = [];
+  for (let i = 0; i < totalPages; i++) {
+    pages.push(i);
+  }
+
+  return (
+    <div className={styles.pagination}>
+      {pages.map((page) => (
+        <button
+          key={page}
+          className={currentPage === page ? styles.activePage : styles.page}
+          onClick={() => onPageChange(page)}
+        >
+          {page + 1}
+        </button>
+      ))}
+    </div>
   );
 };
 

@@ -1,9 +1,11 @@
+
 .container {
   padding: 0.4rem;
 }
 
 .header {
   text-align: center;
+  font-family: "Figtree";
 }
 
 .allPostsContainer {
@@ -11,26 +13,29 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  font-family: "Figtree";
 }
 
 .post {
   text-align: left;
-  background-color: azure;
+  font-family: "Figtree";
 }
 
 .postId {
   text-align: center;
   font-weight: bold;
+  font-family: "Figtree";
 }
 
 .button {
-  border: 1px solid #64748b;
+  border: 1px solid white;
   background: #475569;
   padding: 1rem 4rem;
   color: #fff;
   cursor: pointer;
   border-radius: 3px;
   margin: 0 auto;
+  font-family: "Figtree";
 }
 
 .postContainer {
@@ -41,4 +46,6 @@
   width: 20rem;
   margin-right: 10px;
   transition: all 0.1s ease-in-out;
+  color:white;
+  background-color:black;
 }
